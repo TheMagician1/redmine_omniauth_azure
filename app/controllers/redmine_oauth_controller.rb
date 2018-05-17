@@ -5,8 +5,9 @@ require 'jwt'
 class RedmineOauthController < AccountController
   include Helpers::MailHelper
   include Helpers::Checker
+
   def oauth_azure
-    if Setting.plugin_redmine_omniauth_azure[:azure_oauth_authentication]
+    if Setting.plugin_redmine_omniauth_azure['azure_oauth_authentication']
       session[:back_url] = params[:back_url]
       redirect_to oauth_client.auth_code.authorize_url(:redirect_uri => oauth_azure_callback_url, :scope => scopes)
     else
@@ -22,7 +23,7 @@ class RedmineOauthController < AccountController
       token = oauth_client.auth_code.get_token(params[:code], :redirect_uri => oauth_azure_callback_url, :resource => "00000002-0000-0000-c000-000000000000")
       user_info = JWT.decode(token.token, nil, false)
       logger.error user_info
-      
+
       email = user_info.first['unique_name']
 
       if email
@@ -54,12 +55,14 @@ class RedmineOauthController < AccountController
       # Self-registration off
       redirect_to(home_url) && return unless Setting.self_registration?
       # Create on the fly
-      user.firstname, user.lastname = info["name"].split(' ') unless info['name'].nil?
-      user.firstname ||= info["name"]
-      user.lastname ||= info["name"]
+      name = info["name"].split('-', 2).last
+      name ||= info["name"]
+      user.firstname, user.lastname = name.split(' ', 2) unless name.nil?
+      user.firstname ||= name
+      user.lastname ||= name
       user.mail = email
-      user.login = info['login']
-      user.login ||= [user.firstname, user.lastname]*"."
+      user.login = info['unique_name']
+      user.login ||= [user.firstname, user.lastname] * "."
       user.random_password
       user.register
 
@@ -88,10 +91,10 @@ class RedmineOauthController < AccountController
   end
 
   def oauth_client
-    @client ||= OAuth2::Client.new(settings[:client_id], settings[:client_secret],
-      :site => 'https://login.windows.net',
-      :authorize_url => '/' + settings[:tenant_id] + '/oauth2/authorize',
-      :token_url => '/' + settings[:tenant_id] + '/oauth2/token')
+    @client ||= OAuth2::Client.new(settings['client_id'], settings['client_secret'],
+                                   :site => 'https://login.windows.net',
+                                   :authorize_url => '/' + settings['tenant_id'] + '/oauth2/authorize',
+                                   :token_url => '/' + settings['tenant_id'] + '/oauth2/token')
   end
 
   def settings
