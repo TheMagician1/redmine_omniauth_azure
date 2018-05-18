@@ -14,6 +14,8 @@ Redmine::Plugin.register :redmine_omniauth_azure do
     :client_id => "",
     :client_secret => "",
     :azure_oauth_authentication => false,
+    :label_login_with_azure => "Login By Azure",
+    :replace_redmine_login => false,
     :allowed_domains => ""
   }, :partial => 'settings/azure_settings'
 end

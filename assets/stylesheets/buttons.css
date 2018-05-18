@@ -1,23 +1,38 @@
-.button-login {
-  position: relative;
-  left: 45%;
-  display: inline-block;
-  border: 1px solid #999;
-  border-radius: 2px;
-  margin-top: 10px;
-  width: 135px;
-  height: 25px;
-  padding: 0;
+#azure-login {
+    margin: 0em auto 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.button-login-icon {
-  float: left;
-  height: 18px;
-  padding: 1px 0px 0px 4px;
+#azure-login a, #azure-login a:hover {
+    display: inline-block;
+    padding: 0.4em 1em;
+    max-width: 800px;
+    text-align: center;
+    color: #fff;
+    background-color: #78cc01;
+    text-decoration: none !important;
+    text-shadow: 1px 1px 1px #666;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    min-width: 308px;
 }
 
-.button-login-text {
-  line-height: 21px;
-  background-image: -webkit-linear-gradient(bottom, #ddd, white);
-  font-size: 12px;
+#azure-login a:hover {
+    background-color: #70c600;
+}
+
+#azure-login a:active {
+    position: relative;
+    top: 1px;
+}
+
+#login-form {
+    margin-bottom: 0em;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border-bottom: none;
 }
