@@ -4,4 +4,5 @@ en:
   notice_domain_not_allowed: "You can not login using %{domain} domain."
   notice_azure_access_denied: "You must allow to use you Azure credentials to enter this site."
   login_via_azure: "Login via Azure"
+  notice_access_denied: "Access denied, Please contact to admin to required login."
   notice_no_verified_email_we_could_use: "No verified email provided by Azure, go and verify you email address on azure.com"
