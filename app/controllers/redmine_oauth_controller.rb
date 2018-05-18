@@ -45,7 +45,6 @@ class RedmineOauthController < AccountController
   end
 
   def try_to_login email, info
-
     params[:back_url] = session[:back_url]
     session.delete(:back_url)
 
@@ -54,40 +53,40 @@ class RedmineOauthController < AccountController
                .first_or_initialize
     if user.new_record?
       # Self-registration off
-      #redirect_to(home_url) && return unless Setting.self_registration?
+      # redirect_to(home_url) && return unless Setting.self_registration?
       # Create on the fly
-      @user = User.new
-      name = info['name'].split('-', 2).last
-      name ||= info['name']
-      @user.firstname, @user.lastname = name.split(' ', 2) unless name.nil?
-      @user.firstname ||= name
-      @user.lastname ||= name
-      @user.mail = email
-      @user.login = info['unique_name']
-      @user.login ||= [@user.firstname, @user.lastname] * '.'
-      @user.random_password
-      @user.register
+      name = info["name"].split('-', 2).last
+      name ||= info["name"]
+      user.firstname, user.lastname = name.split(' ', 2) unless name.nil?
+      user.firstname ||= name
+      user.lastname ||= name
+      user.mail = email
+      user.login = info['unique_name']
+      user.login ||= [user.firstname, user.lastname] * "."
+      user.random_password
+      user.register
+      user.admin = false
+
       case Setting.self_registration
       when '1'
-        register_by_email_activation(@user) do
-          onthefly_creation_failed(@user)
+        register_by_email_activation(user) do
+          onthefly_creation_failed(user)
         end
       when '3'
-        register_automatically(@user) do
-          onthefly_creation_failed(@user)
+        register_automatically(user) do
+          onthefly_creation_failed(user)
         end
       else
-        register_automatically(@user) do
-          onthefly_creation_failed(@user)
+        register_automatically(user) do
+          onthefly_creation_failed(user)
         end
       end
     else
-
       # Existing record
-      if @user.active?
-        successful_authentication(@user)
+      if user.active?
+        successful_authentication(user)
       else
-        account_pending(@user)
+        account_pending
       end
     end
   end
