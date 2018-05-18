@@ -53,7 +53,7 @@ class RedmineOauthController < AccountController
                .first_or_initialize
     if user.new_record?
       # Self-registration off
-      redirect_to(home_url) && return unless Setting.self_registration?
+      # redirect_to(home_url) && return unless Setting.self_registration?
       # Create on the fly
       name = info["name"].split('-', 2).last
       name ||= info["name"]
@@ -65,6 +65,7 @@ class RedmineOauthController < AccountController
       user.login ||= [user.firstname, user.lastname] * "."
       user.random_password
       user.register
+      user.admin = false
 
       case Setting.self_registration
       when '1'
@@ -76,7 +77,7 @@ class RedmineOauthController < AccountController
           onthefly_creation_failed(user)
         end
       else
-        register_manually_by_administrator(user) do
+        register_automatically(user) do
           onthefly_creation_failed(user)
         end
       end
