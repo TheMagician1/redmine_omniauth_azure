@@ -15,7 +15,6 @@
     background-color: #78cc01;
     text-decoration: none !important;
     border: 1px solid #FDBF3B;
-    border-top: none;
     text-shadow: 1px 1px 1px #666;
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
@@ -32,11 +31,11 @@
 /*top: 1px;*/
 /*}*/
 
-#login-form {
-    margin-bottom: 0em;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    border-bottom: none;
-    display: none;
-}
+/*#login-form {*/
+/*margin-bottom: 0em;*/
+/*-moz-border-radius: 0px;*/
+/*-webkit-border-radius: 0px;*/
+/*border-radius: 0px;*/
+/*border-bottom: none;*/
+/*display: none;*/
+/*}*/

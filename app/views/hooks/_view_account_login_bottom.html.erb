@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag 'buttons', :plugin => 'redmine_omniauth_azure' %>
 
 <% if Setting.plugin_redmine_omniauth_azure['azure_oauth_authentication'] %>
+  <style>
+    #login-form {
+      display: none;
+    }
+  </style>
   <div id="azure-login">
   <%= link_to oauth_azure_path(:back_url => back_url) do %>
       <%= content_tag :div, Setting.plugin_redmine_omniauth_azure['label_login_with_azure'] %>
