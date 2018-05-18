@@ -1,6 +1,5 @@
 en:
   label_login_page_text: Login page text
-  label_replace_redmine_login: Replace Redmine login page
   notice_unable_to_obtain_azure_credentials: "Unable to obtain credentials from Azure."
   notice_domain_not_allowed: "You can not login using %{domain} domain."
   notice_azure_access_denied: "You must allow to use you Azure credentials to enter this site."
