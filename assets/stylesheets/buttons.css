@@ -13,21 +13,23 @@
     color: #fff;
     background-color: #78cc01;
     text-decoration: none !important;
+    border: 1px solid #FDBF3B;
+    border-top: none;
     text-shadow: 1px 1px 1px #666;
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
     border-radius: 0px;
-    min-width: 308px;
+    min-width: 306px;
 }
 
 #azure-login a:hover {
     background-color: #70c600;
 }
 
-#azure-login a:active {
-    position: relative;
-    top: 1px;
-}
+/*#azure-login a:active {*/
+/*position: relative;*/
+/*top: 1px;*/
+/*}*/
 
 #login-form {
     margin-bottom: 0em;
