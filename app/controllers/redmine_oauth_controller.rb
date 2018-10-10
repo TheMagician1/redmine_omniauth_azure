@@ -33,6 +33,9 @@ class RedmineOauthController < AccountController
         redirect_to signin_path
       end
     end
+  rescue OAuth2::Error => e
+    flash[:error] = e.to_s
+    redirect_to signin_path
   end
 
   def checked_try_to_login(email, user)
