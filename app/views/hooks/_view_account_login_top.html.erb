@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag 'buttons', :plugin => 'redmine_omniauth_azure' %>
 
 <%- if Setting.plugin_redmine_omniauth_azure['azure_oauth_authentication'] %>
+  <%- if Setting.plugin_redmine_omniauth_azure['azure_redmine_autologon'] %>
+  <script>
+	  window.location.replace("<%= oauth_azure_path(:back_url => back_url) %>");
+  </script>
+  <%- end%>
   <%- if Setting.plugin_redmine_omniauth_azure['hide_redmine_authentication'] %>
   <style>
     #login-form {

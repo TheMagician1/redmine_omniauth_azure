@@ -27,6 +27,10 @@
   <%= check_box_tag 'settings[hide_redmine_authentication]', true, @settings['hide_redmine_authentication'] %>
 </p>
 <p>
+  <label>Try to autologin user:</label>
+  <%= check_box_tag 'settings[azure_redmine_autologon]', true, @settings['azure_redmine_autologon'] %>
+</p>
+<p>
   <label><%= l(:label_login_page_text) %></label>
   <%= text_field_tag 'settings[label_login_with_azure]', @settings['label_login_with_azure'], :size => 50 %>
 </p>
