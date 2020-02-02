@@ -1,3 +1,4 @@
+require 'application_controller'
 require 'account_controller'
 require 'json'
 require 'jwt'
